@@ -23,7 +23,6 @@
     "**/*.d.ts",
     "**/*.scss",
     "**/*.sass",
-    "tsconfig.json",
     "package.json"
   ],
   "bugs": {
