@@ -1,0 +1,44 @@
+{
+  "name": "veigar",
+  "version": "0.0.1",
+  "description": "react components",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf *.d.ts *.js *.js.map **/*.d.ts **/*.js **/*.js.map",
+    "build": "tsc",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sitb-software/veigar.git"
+  },
+  "keywords": [
+    "react",
+    "react-components"
+  ],
+  "author": "Sean",
+  "license": "ISC",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "**/*.scss",
+    "**/*.sass",
+    "tsconfig.json",
+    "package.json"
+  ],
+  "bugs": {
+    "url": "https://github.com/sitb-software/veigar/issues"
+  },
+  "homepage": "https://github.com/sitb-software/veigar#readme",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.28",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
