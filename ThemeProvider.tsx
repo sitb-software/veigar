@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import {classPrefix} from './styles';
 
 export default class ThemeProvider extends React.Component<any, any> {
 
@@ -9,7 +10,7 @@ export default class ThemeProvider extends React.Component<any, any> {
 
   getChildContext() {
     return {
-      classPrefix: 'sitb-rn-'
+      classPrefix
     };
 
   }
