@@ -1,2 +1,27 @@
-$classPrefix: '.sitb-rn';
+$classPrefix: '.veigar';
 $spacing: 15px;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1360px
+) !default;
+
+// Grid container
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1300px
+) !default;
+
+// Grid Columns
+$grid-columns: 12 !default;
+$grid-gutter-width: 15px !default;
