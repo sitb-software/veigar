@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Component from '../AbstractComponent';
-import 'index.scss';
+import * as classNames from 'classnames';
+import {classPrefix} from '../styles';
+import './index.scss';
 
 class Base extends Component {
 
@@ -17,13 +19,19 @@ class Base extends Component {
 
 }
 
-export function Container({fluid, ...props}) {
+export const containerClass = `${classPrefix}container`;
+
+export const containerClassFluid = `${containerClass}-fluid`;
+
+export function Container({fluid = false, ...props}) {
   return (
     <Base {...props}
           type={`container${fluid ? '-fluid' : ''}`}
     />
   );
 }
+
+export const rowClass = `${classPrefix}row`;
 
 export function Row(props) {
   return (
@@ -33,7 +41,16 @@ export function Row(props) {
   );
 }
 
-export function Col({xs, md, lg, sm, ...props}) {
+export function colClass({xs = 0, md = 0, lg = 0, sm = 0}) {
+  const cls = {};
+  cls[`${classPrefix}col-xs-${xs}`] = xs;
+  cls[`${classPrefix}col-sm-${sm}`] = sm;
+  cls[`${classPrefix}col-md-${md}`] = md;
+  cls[`${classPrefix}col-lg-${lg}`] = lg;
+  return classNames(cls);
+}
+
+export function Col({xs = 0, md = 0, lg = 0, sm = 0, ...props}) {
   const cls = {};
   cls[`col-xs-${xs}`] = xs;
   cls[`col-sm-${sm}`] = sm;
