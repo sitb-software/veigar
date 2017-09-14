@@ -21,6 +21,7 @@ $menuItem: #{$menu}-item;
     min-width: 120px;
     text-align: left;
     top: 50px;
+    left: -10px;
     display: none;
     #{$menuItem} {
       display: list-item;
@@ -32,6 +33,7 @@ $menuItem: #{$menu}-item;
 }
 
 #{$menuItem} {
+  position: relative;
   list-style: none;
   cursor: pointer;
   padding: 0 $spacing;
