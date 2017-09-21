@@ -1,0 +1,8 @@
+@import "../styles/variables";
+@import "../styles/mixins/flexbox";
+
+$itemClassPrefix: #{$classPrefix}-form-item;
+
+#{$itemClassPrefix}-list {
+  @include row;
+}

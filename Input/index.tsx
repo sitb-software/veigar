@@ -2,11 +2,15 @@ import * as React from 'react';
 import Component from '../AbstractComponent';
 import {Row, Col} from '../GridLayout';
 
-import {ItemProps} from './index';
+import {ItemProps} from '../Form/index';
 
 export interface Props extends ItemProps {
   label?: React.ReactNode;
-  colon?: boolean
+  colon?: boolean,
+  required?: boolean,
+  pattern?: RegExp,
+  errMsg?: string,
+  missMsg?: string
 }
 
 export default class Input extends Component<Props, any> {
