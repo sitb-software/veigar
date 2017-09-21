@@ -41,7 +41,7 @@ export function Row(props) {
   );
 }
 
-export function colClass({xs = 0, md = 0, lg = 0, sm = 0}) {
+export function colClass({xs = 12, md = 0, lg = 0, sm = 0}) {
   const cls = {};
   cls[`${classPrefix}col-xs-${xs}`] = xs;
   cls[`${classPrefix}col-sm-${sm}`] = sm;
@@ -50,7 +50,7 @@ export function colClass({xs = 0, md = 0, lg = 0, sm = 0}) {
   return classNames(cls);
 }
 
-export function Col({xs = 0, md = 0, lg = 0, sm = 0, ...props}) {
+export function Col({xs = 12, md = 0, lg = 0, sm = 0, ...props}) {
   const cls = {};
   cls[`col-xs-${xs}`] = xs;
   cls[`col-sm-${sm}`] = sm;
