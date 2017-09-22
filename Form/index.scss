@@ -2,7 +2,14 @@
 @import "../styles/mixins/flexbox";
 
 $itemClassPrefix: #{$classPrefix}-form-item;
+$form: #{$classPrefix}-form;
 
 #{$itemClassPrefix}-list {
   @include row;
+}
+
+#{$form}-vertical {
+  padding: 2% 4%;
+  width: 100%;
+  center();
 }
