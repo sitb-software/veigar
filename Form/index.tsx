@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Component from '../AbstractComponent';
+import './index';
 
 export interface Props {
   onSubmit?: Function,
@@ -15,7 +16,7 @@ export interface ItemProps {
 export default class Form extends Component<Props> {
 
   static defaultProps = {
-    mode: 'horizontal',
+    mode: 'vertical',
   };
 
   renderChildren(children) {
@@ -38,9 +39,12 @@ export default class Form extends Component<Props> {
   }
 
   render() {
-    const {children} = this.props;
+    const {children, mode} = this.props;
+    const cls = {
+      [`form-${mode}`]: true
+    };
     return (
-      <form className={this.getClassName('form')}>
+      <form className={this.getClassName('form', cls)}>
         {this.renderChildren(children)}
       </form>
     );
