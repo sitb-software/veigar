@@ -16,7 +16,7 @@ export interface ItemProps {
 export default class Form extends Component<Props> {
 
   static defaultProps = {
-    mode: 'vertical',
+    mode: 'horizontal',
   };
 
   renderChildren(children) {
