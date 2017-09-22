@@ -50,13 +50,16 @@ export default class Input extends Component<Props, any> {
   }
 
   renderInput() {
-    const {required, disabled, wrapperWidth} = this.props;
+    const {required, disabled, wrapperWidth, type, placeholder, name} = this.props;
     return (
       <Column className={this.getClassName('input')}
               width={wrapperWidth}
       >
         <input disabled={disabled}
                required={required}
+               type={type}
+               placeholder={placeholder}
+               name={name}
         />
       </Column>
     );
