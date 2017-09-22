@@ -40,7 +40,9 @@ export default class AbstractComponent<P = {}, S = {}> extends Component<any, an
   getClassName(...cls): string {
     const {className} = this.props;
     const {classPrefix} = this.context;
-    return classNames(classPrefix, ...cls, className);
+    let clsStr: string = classNames(...cls, className);
+    clsStr = clsStr.replace(`${classPrefix} `, '');
+    return `${classPrefix} ${clsStr}`;
   }
 
 }
