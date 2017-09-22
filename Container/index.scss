@@ -1,0 +1,28 @@
+@import "../styles/variables";
+@import "../styles/mixins/breakpoints";
+
+@mixin make-container() {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: ($grid-gutter-width / 2);
+  padding-left: ($grid-gutter-width / 2);
+}
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+.#{$classPrefix}.container {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+.#{$classPrefix}.container-fluid {
+  @include make-container();
+}
