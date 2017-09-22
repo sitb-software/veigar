@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+@mixin verticalCenter() {
+  display: flex;
+  align-items: center;
+}
+
 @mixin column() {
   display: flex;
   flex-direction: column;
