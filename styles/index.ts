@@ -1,1 +1,1 @@
-export const classPrefix = 'veigar-';
+export const classPrefix = 'veigar';
