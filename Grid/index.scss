@@ -1,6 +1,21 @@
 @import "../styles/variables";
-@import "../styles/common";
-@import "../styles/mixins/breakpoints";
+
+@at-root {
+  @-ms-viewport {
+    width: device-width;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 
 #{$classPrefix}.grid {
   display: flex;

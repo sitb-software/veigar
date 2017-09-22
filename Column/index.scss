@@ -3,6 +3,7 @@
 #{$classPrefix}.column {
   position: relative;
   min-height: 1px; // Prevent columns from collapsing when empty
+  width: 100%;
   padding-right: ($grid-gutter-width / 2);
   padding-left: ($grid-gutter-width / 2);
 }
