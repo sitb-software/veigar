@@ -35,15 +35,12 @@ export default class AbstractComponent<P = {}, S = {}> extends Component<any, an
 
   /**
    * 获取class name
-   * @param cls 基本类名
-   * @param other 其他class
+   * @param cls class
    */
-  getClassName(cls, other?: Object): string {
+  getClassName(...cls): string {
     const {className} = this.props;
     const {classPrefix} = this.context;
-    const result = {};
-    other && Object.keys(other).forEach(key => result[`${classPrefix}${key}`] = other[key]);
-    return classNames(cls && `${classPrefix}${cls}`, className, result);
+    return classNames(classPrefix, ...cls, className);
   }
 
 }
