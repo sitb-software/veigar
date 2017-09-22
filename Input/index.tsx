@@ -2,8 +2,8 @@ import * as React from 'react';
 import Component from '../AbstractComponent';
 import Grid from '../Grid';
 import Column from '../Column';
-
 import {ItemProps} from '../Form/index';
+import './index.scss';
 
 export interface Props extends ItemProps {
   label?: React.ReactNode;
@@ -22,7 +22,7 @@ export default class Input extends Component<Props, any> {
   };
 
   renderLabel() {
-    const {label, mode, colon} = this.props;
+    const {label, labelWidth, mode, colon} = this.props;
     if (!label) {
       return null;
     }
@@ -38,19 +38,23 @@ export default class Input extends Component<Props, any> {
     // };
 
     return (
-      <label className={this.getClassName('form-item-label')}
-             title={typeof label === 'string' ? label : ''}
+      <Column className={this.getClassName('label')}
+              width={labelWidth}
       >
-        {children}
-      </label>
+        <label title={typeof label === 'string' ? label : ''}>
+          {children}
+        </label>
+      </Column>
     );
 
   }
 
   renderInput() {
-    const {required, disabled} = this.props;
+    const {required, disabled, wrapperWidth} = this.props;
     return (
-      <Column>
+      <Column className={this.getClassName('input')}
+              width={wrapperWidth}
+      >
         <input disabled={disabled}
                required={required}
         />
@@ -65,7 +69,7 @@ export default class Input extends Component<Props, any> {
 
     return (
       <Grid columns={columns}
-            className={this.getClassName('item', 'item-input')}
+            className={this.getClassName('item')}
       >
         {this.renderLabel()}
         {this.renderInput()}

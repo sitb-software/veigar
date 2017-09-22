@@ -1,15 +1,26 @@
 @import "../styles/variables";
 @import "../styles/mixins/flexbox";
 
-$itemClassPrefix: #{$classPrefix}-form-item;
-$form: #{$classPrefix}-form;
-
-#{$itemClassPrefix}-list {
-  @include row;
+#{$classPrefix}.form {
+  label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
-#{$form}-vertical {
-  padding: 2% 4%;
-  width: 100%;
-  center();
+#{$classPrefix}.form.list {
+  background: #FFF;
+  padding-left: $spacing;
+  border: $border-width solid $border-color;
+  .item {
+    border-bottom: $border-width solid $border-color;
+    &:last-child {
+      border-bottom: none;
+    }
+    input {
+      border: none;
+    }
+  }
 }
+
