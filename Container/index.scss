@@ -18,11 +18,11 @@
   }
 }
 
-.#{$classPrefix}.container {
+#{$classPrefix}.container {
   @include make-container();
   @include make-container-max-widths();
 }
 
-.#{$classPrefix}.container-fluid {
+#{$classPrefix}.container-fluid {
   @include make-container();
 }
