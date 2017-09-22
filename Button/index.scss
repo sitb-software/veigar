@@ -1,0 +1,15 @@
+@import "../styles/variables";
+
+.button {
+  padding: 5px 15px;
+  font-size: 15px;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  color: rgba(90, 90, 90, 1);
+  background: rgba(224, 225, 226, 1);
+  &:hover {
+    background: rgba(191, 191, 191, 1);
+    color: rgba(66, 66, 66, 1);
+  }
+}
