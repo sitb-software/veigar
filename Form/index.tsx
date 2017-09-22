@@ -4,11 +4,11 @@ import './index';
 
 export interface Props {
   onSubmit?: Function,
-  mode: 'vertical' | 'horizontal' | 'inline' | 'list'
+  mode: 'vertical' | 'horizontal' | 'list'
 }
 
 export interface ItemProps {
-  mode: 'vertical' | 'horizontal' | 'inline' | 'list',
+  mode: 'vertical' | 'horizontal' | 'list',
   form: Form,
   children?: any
 }
@@ -40,11 +40,8 @@ export default class Form extends Component<Props> {
 
   render() {
     const {children, mode} = this.props;
-    const cls = {
-      [`form-${mode}`]: true
-    };
     return (
-      <form className={this.getClassName('form', cls)}>
+      <form className={this.getClassName('form', mode)}>
         {this.renderChildren(children)}
       </form>
     );

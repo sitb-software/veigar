@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Component from '../AbstractComponent';
-import {Row, Col} from '../Grid';
+import Grid from '../Grid';
+import Column from '../Column';
 
 import {ItemProps} from '../Form/index';
 
@@ -49,27 +50,26 @@ export default class Input extends Component<Props, any> {
   renderInput() {
     const {required, disabled} = this.props;
     return (
-      <Col>
+      <Column>
         <input disabled={disabled}
                required={required}
         />
-      </Col>
+      </Column>
     );
   }
 
   render() {
     const {mode} = this.props;
 
-    const clsPrefix = 'form-item';
-    const cls = {
-      [`${clsPrefix}-${mode}`]: true
-    };
+    const columns = mode === 'vertical' ? 1 : 2;
 
     return (
-      <Row className={this.getClassName(clsPrefix, cls)}>
+      <Grid columns={columns}
+            className={this.getClassName('item', 'item-input')}
+      >
         {this.renderLabel()}
         {this.renderInput()}
-      </Row>
+      </Grid>
     );
   }
 
