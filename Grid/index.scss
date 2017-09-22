@@ -1,0 +1,11 @@
+@import "../styles/variables";
+@import "../styles/common";
+@import "../styles/mixins/breakpoints";
+
+#{$classPrefix}.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: ($grid-gutter-width / -2);
+  margin-left: ($grid-gutter-width / -2);
+}
+

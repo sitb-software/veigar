@@ -1,0 +1,9 @@
+@import "../styles/variables";
+
+#{$classPrefix}.column {
+  position: relative;
+  width: 100%;
+  min-height: 1px; // Prevent columns from collapsing when empty
+  padding-right: ($grid-gutter-width / 2);
+  padding-left: ($grid-gutter-width / 2);
+}

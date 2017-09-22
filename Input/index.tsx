@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Component from '../AbstractComponent';
-import {Row, Col} from '../GridLayout';
+import {Row, Col} from '../Grid';
 
 import {ItemProps} from '../Form/index';
 
