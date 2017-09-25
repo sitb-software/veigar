@@ -26,37 +26,33 @@ export interface ItemProps {
 /**
  * 创建表单
  */
-export function create() {
+export const create = (): Function => ComposedComponent => class FormWrapper extends Component {
 
-  return AppComponent => class FormWrapper extends Component {
-
-    static childContextTypes = {
-      registerForm: PropTypes.func
-    };
-
-    state = {
-      forms: {}
-    };
-
-    getChildContext() {
-      return {
-        registerForm: (name, form) => {
-          const {forms} = this.state;
-          forms[name] = form;
-          this.setState(forms);
-        }
-      };
-
-    }
-
-    render() {
-      return (
-        <AppComponent forms={this.state.forms}/>
-      )
-    }
-
+  static childContextTypes = {
+    registerForm: PropTypes.func
   };
-}
+
+  state = {
+    forms: {}
+  };
+
+  getChildContext() {
+    return {
+      registerForm: (name, form) => {
+        const {forms} = this.state;
+        forms[name] = form;
+        this.setState(forms);
+      }
+    };
+
+  }
+
+  render() {
+    return (
+      <ComposedComponent forms={this.state.forms}/>
+    )
+  }
+};
 
 export default class Form extends Component<Props> {
 
@@ -113,6 +109,10 @@ export default class Form extends Component<Props> {
     this.errorFields.mismatch[name] = message;
   }
 
+  putFormField(name, field) {
+    this.fields[name] = field;
+  }
+
   renderChildren(children) {
     const {mode, labelWidth, wrapperWidth} = this.props;
     let lw = labelWidth;
@@ -122,28 +122,19 @@ export default class Form extends Component<Props> {
     } else if (!labelWidth && wrapperWidth) {
       lw = 100 - wrapperWidth;
     }
-    // 清空表单
-    this.fields = {};
 
     return React.Children.map(children, (child: React.ReactElement<ItemProps>) => {
       if (!React.isValidElement(child)) {
         return child;
       }
 
-      const {name} = child.props;
-
       if ((child.type as any).name === 'Input') {
-        const input = React.cloneElement<any, ItemProps>(child, {
+        return React.cloneElement<any, ItemProps>(child, {
           mode,
           form: this,
           labelWidth: child.props.labelWidth || lw || 20,
           wrapperWidth: child.props.wrapperWidth || ww || 80
         });
-        if (name) {
-          this.fields[name] = input;
-        }
-
-        return input;
       }
       return React.cloneElement<any, any>(child, {
         children: this.renderChildren(child.props.children)
