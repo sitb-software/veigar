@@ -87,7 +87,10 @@ export default class Form extends Component<Props> {
       mismatch: {}
     };
     Object.keys(this.fields).forEach(key => this.fields[key].valid());
-    return this.errorFields;
+    if (Object.keys(this.errorFields.miss).length > 0 || Object.keys(this.errorFields.mismatch).length > 0) {
+      return this.errorFields;
+    }
+    return null;
   }
 
   getValue() {
