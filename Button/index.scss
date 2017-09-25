@@ -1,15 +1,39 @@
 @import "../styles/variables";
 
-.button {
-  padding: 5px 15px;
-  font-size: 15px;
-  border-radius: 3px;
-  border: none;
-  outline: none;
-  color: rgba(90, 90, 90, 1);
-  background: rgba(224, 225, 226, 1);
-  &:hover {
-    background: rgba(191, 191, 191, 1);
-    color: rgba(66, 66, 66, 1);
+$gray: rgba(224, 225, 226, 1);
+$white: white;
+
+#{$classPrefix}.buttonBox {
+  display: inline-block;
+  .button {
+    padding: 5px 15px;
+    font-size: 13px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: rgba(90, 90, 90, 1);
+    background: $gray;
+    &:hover {
+      background: rgba(191, 191, 191, 1);
+      color: rgba(66, 66, 66, 1);
+    }
+  }
+}
+
+#{$classPrefix}.buttonBox.vertical {
+  display: block;
+  padding: 1% 3%;
+  box-shadow: 0 0 0.01rem 0.03rem $gray;
+  margin-top: 10px;
+  .button {
+    width: 100%;
+    padding: 3% 0;
+    text-align: left;
+    border-radius: inherit;
+    border-bottom: 0.01rem solid $gray;
+    background: $white;
+  }
+  .button:last-child {
+    border-bottom: none;
   }
 }
