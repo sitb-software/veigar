@@ -2,6 +2,9 @@
 @import "../styles/mixins/flexbox";
 
 #{$classPrefix}.form {
+  .label, .input {
+    @include verticalCenter();
+  }
   label {
     overflow: hidden;
     white-space: nowrap;
