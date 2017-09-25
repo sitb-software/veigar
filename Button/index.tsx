@@ -7,24 +7,22 @@ import Component from '../AbstractComponent';
 import './index.scss';
 
 export interface Props {
-  width: number,
-  style?: any,
-  butValue?: string
+  children?: any,
+  mode: 'vertical' | 'horizontal',
 }
 
-export interface SearchFunc {
-  onclick: string
-}
-
-export default class Button extends Component<Props, SearchFunc> {
-
+export default class Button extends Component<Props> {
+  static defaultProps = {
+    mode: 'horizontal'
+  };
   render() {
-    const {style, onclick, butValue} = this.props;
+    const {children, mode, ...other} = this.props;
     return (
-      <button className={this.getClassName('button')}
-              onClick={onclick}
-              style={{style}}
-      >{butValue}</button>
+      <div className={this.getClassName('buttonBox', mode)}>
+        <button {...other}
+                className={this.getClassName('button')}
+        >{children}</button>
+      </div>
     );
   }
 
