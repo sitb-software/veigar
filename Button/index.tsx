@@ -15,7 +15,8 @@ export default class Button extends Component<Props> {
 
   static defaultProps = {
     mode: 'default',
-    ghost: false
+    ghost: false,
+    type: 'button'
   };
 
   render() {

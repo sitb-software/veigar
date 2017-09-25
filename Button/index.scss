@@ -8,7 +8,7 @@
 #{$classPrefix}.button {
   padding: 11px 21px;
   font-size: $font-size-base;
-  border-radius: 3px;
+  border-radius: $border-radius;
   border: none;
   outline: none;
   display: inline-block;
@@ -22,10 +22,16 @@
   }
 
   &.primary {
-    @include setColor(#2185d0, #FFF);
+    @include setColor($primary-color, $white);
 
     &:hover {
-      @include setColor(#1678c2, #FFF);
+      @include setColor($primary-color-hover, $white);
+    }
+
+    &.ghost {
+      color: $primary-color;
+      background: none;
+      border: $border-width solid $primary-color;
     }
   }
 }
