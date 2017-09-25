@@ -7,20 +7,22 @@ import Component from '../AbstractComponent';
 import './index.scss';
 
 export interface Props {
-  mode?: 'primary' | 'default'
+  mode?: 'primary' | 'default',
+  ghost?: boolean
 }
 
 export default class Button extends Component<Props> {
 
   static defaultProps = {
-    mode: 'default'
+    mode: 'default',
+    ghost: false
   };
 
   render() {
-    const {children, mode, ...other} = this.props;
+    const {children, mode, ghost, ...other} = this.props;
     return (
       <button {...other}
-              className={this.getClassName('button', mode)}
+              className={this.getClassName('button', mode, {ghost})}
       >
         {children}
       </button>
