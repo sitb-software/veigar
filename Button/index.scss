@@ -29,6 +29,13 @@
     }
 
     &.ghost {
+      width: 100%;
+      padding: 7% 4%;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: $font-size-base;
       color: $primary-color;
       background: none;
       border: $border-width solid $primary-color;
