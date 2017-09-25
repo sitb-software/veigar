@@ -59,6 +59,9 @@ $colors: map-merge((
   gray-dark: $gray-800
 ), $colors);
 
+$primary-color: #2185d0;
+$primary-color-hover: #1678c2;
+
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
