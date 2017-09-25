@@ -1,6 +1,6 @@
 import {Component} from 'react';
-import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
+import {classPrefix} from './styles'
 
 const excludeFunc = [
   'constructor',
@@ -19,10 +19,6 @@ const excludeFunc = [
  */
 export default class AbstractComponent<P = {}, S = {}> extends Component<any, any> {
 
-  static contextTypes = {
-    classPrefix: PropTypes.string
-  };
-
   constructor(props: P, content: S) {
     super(props, content);
     let propertyNames = Reflect.ownKeys(Reflect.getPrototypeOf(this));
@@ -39,7 +35,6 @@ export default class AbstractComponent<P = {}, S = {}> extends Component<any, an
    */
   getClassName(...cls): string {
     const {className} = this.props;
-    const {classPrefix} = this.context;
     let clsStr: string = classNames(...cls, className);
     clsStr = clsStr.replace(`${classPrefix} `, '');
     return `${classPrefix} ${clsStr}`;
