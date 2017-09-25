@@ -3,6 +3,8 @@ import {render} from 'react-dom';
 import Component from '../AbstractComponent';
 import './index.scss';
 
+const id = 'veigar-toast-root';
+
 const variables = {
   config: {
     position: 'top',
@@ -46,12 +48,17 @@ class Toast extends Component {
   }
 
   componentWillUnmount() {
-    this.closeTask && clearTimeout(this.closeTask);
-    this.closeTask = null;
+    this.clearTimeout();
   }
 
   handleClose() {
-    console.log('close');
+    const root = document.getElementById(id);
+    root && document.body.removeChild(root);
+  }
+
+  clearTimeout() {
+    this.closeTask && clearTimeout(this.closeTask);
+    this.closeTask = null;
   }
 
   render() {
@@ -85,7 +92,6 @@ class Toast extends Component {
 }
 
 function toast({content, type, duration, onClose}) {
-  const id = 'veigar-toast-root';
   let container = document.getElementById(id);
   if (!container) {
     container = document.createElement('div');
