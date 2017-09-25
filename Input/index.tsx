@@ -153,6 +153,7 @@ export default class Input extends AbstractFormItem<Props, any> {
   renderInput() {
     const {
       required, disabled, wrapperWidth, type, placeholder, name,
+      maxLength,
       addonAfter,
       addonBefore
     } = this.props;
@@ -167,6 +168,7 @@ export default class Input extends AbstractFormItem<Props, any> {
                placeholder={placeholder}
                name={name}
                value={this.state.value}
+               maxLength={maxLength}
                onChange={this.handleChange}
                onBlur={this.handleBlur}
         />
