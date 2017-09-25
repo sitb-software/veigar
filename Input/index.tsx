@@ -24,6 +24,10 @@ export interface Props extends ItemProps {
    * 与正则表达式不匹配错误消息
    */
   mismatchMsg?: string,
+
+  addonBefore?: React.ReactNode
+  addonAfter?: React.ReactNode
+
   onChange?: Function,
   onTextChange?: Function,
   onBlur?: Function
@@ -97,7 +101,7 @@ export default class Input extends AbstractFormItem<Props, any> {
       case 'bankCard':
         value = value.replace(/\D/g, '').replace(/(....)(?=.)/g, '$1 ');
         break;
-      case 'phone':
+      case 'tel':
         value = value.replace(/\D/g, '').substring(0, 11);
         const valueLen = value.length;
         if (valueLen > 3 && valueLen < 8) {
@@ -135,12 +139,28 @@ export default class Input extends AbstractFormItem<Props, any> {
 
   }
 
+  renderAddon(cls, addon) {
+    if (!addon) {
+      return null;
+    }
+    return (
+      <div className={cls}>
+        {addon}
+      </div>
+    );
+  }
+
   renderInput() {
-    const {required, disabled, wrapperWidth, type, placeholder, name} = this.props;
+    const {
+      required, disabled, wrapperWidth, type, placeholder, name,
+      addonAfter,
+      addonBefore
+    } = this.props;
     return (
       <Column className={this.getClassName('input')}
               width={wrapperWidth}
       >
+        {this.renderAddon('before', addonBefore)}
         <input disabled={disabled}
                required={required}
                type={type}
@@ -150,6 +170,7 @@ export default class Input extends AbstractFormItem<Props, any> {
                onChange={this.handleChange}
                onBlur={this.handleBlur}
         />
+        {this.renderAddon('after', addonAfter)}
       </Column>
     );
   }
