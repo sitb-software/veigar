@@ -1,0 +1,48 @@
+@import "../styles/variables";
+@import "../styles/mixins/flexbox";
+
+#veigar-toast-root {
+  position: fixed;
+  z-index: 9999999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#{$classPrefix}.toast {
+  display: flex;
+  padding: $spacing;
+  background-color: rgba(0, 0, 0, 0.87);
+  color: $white;
+  min-width: 270px;
+  min-height: 50px;
+
+  .icon {
+    display: flex;
+    margin-right: $spacing;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &.vertical {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.top {
+    top: 50px;
+  }
+
+  &.center {
+    top: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
