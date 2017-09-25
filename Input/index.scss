@@ -1,26 +1,27 @@
 @import "../styles/variables";
 @import "../styles/mixins/flexbox";
 
-#{$classPrefix}.form {
-  .item {
-    .label {
-      @include verticalCenter();
+#{$classPrefix}.form .item {
+  .input {
+    flex-direction: row;
+    .before, .after {
+      display: flex;
     }
-    input {
-      margin: 0;
-      max-width: 100%;
-      flex: 1 0 auto;
-      outline: none;
-      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-      line-height: 1.21428571em;
-      padding: .67857143em 1em;
-      background: #FFF;
-      border: 1px solid rgba(34, 36, 38, .15);
-      color: rgba(0, 0, 0, .87);
-      border-radius: .28571429rem;
-      transition: color .1s ease, border-color .1s ease;
-      box-shadow: 0 0 0 0 transparent inset;
-      width: 100%;
-    }
+  }
+  input {
+    margin: 0;
+    max-width: 100%;
+    flex: 1 0 auto;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    background: #FFF;
+    border: 1px solid rgba(34, 36, 38, .15);
+    color: rgba(0, 0, 0, .87);
+    border-radius: .28571429rem;
+    transition: color .1s ease, border-color .1s ease;
+    box-shadow: 0 0 0 0 transparent inset;
+    font-size: $font-size-base;
   }
 }
