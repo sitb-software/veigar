@@ -6,16 +6,17 @@
     flex-direction: row;
     .before, .after {
       display: flex;
+      flex: 1;
     }
   }
   input {
     margin: 0;
     max-width: 100%;
-    flex: 1 0 auto;
+    flex: 1;
     outline: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     line-height: 1.21428571em;
-    padding: .67857143em 1em;
+    padding: 4% 1%;
     background: #FFF;
     border: 1px solid rgba(34, 36, 38, .15);
     color: rgba(0, 0, 0, .87);
