@@ -54,6 +54,8 @@ class Toast extends Component {
   handleClose() {
     const root = document.getElementById(id);
     root && document.body.removeChild(root);
+    const {onClose} = this.props;
+    onClose && onClose();
   }
 
   clearTimeout() {
