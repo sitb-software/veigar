@@ -131,7 +131,7 @@ export default class Form extends Component<Props> {
         return child;
       }
 
-      if ((child.type as any).name === 'Input') {
+      if ((child.type as any).isFormItem) {
         return React.cloneElement<any, ItemProps>(child, {
           mode,
           form: this,
