@@ -4,6 +4,7 @@ import Grid from '../Grid';
 import Column from '../Column';
 import {ItemProps} from '../Form/index';
 import './index.scss';
+import {lang} from '../locale/zh-cn';
 
 export interface Props extends ItemProps {
   label?: React.ReactNode;
@@ -157,6 +158,9 @@ export default class Input extends AbstractFormItem<Props, any> {
       addonAfter,
       addonBefore
     } = this.props;
+    if (!type) {
+      console.warn(lang.inputTypePoint);
+    }
     return (
       <Column className={this.getClassName('input')}
               width={wrapperWidth}
