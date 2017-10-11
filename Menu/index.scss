@@ -1,60 +1,62 @@
 @import "../styles/variables";
 @import "../styles/themes/default";
 
-$menu: #{$classPrefix}-menu;
-$submenu: #{$classPrefix}-submenu;
-$menuItem: #{$menu}-item;
-
-#{$menu} {
+.menu {
   outline: none;
   list-style: none;
   margin: 0;
   padding: 0;
+  font-size: 16px;
   line-height: 45px;
   color: $textColor;
-  position: relative;
-
-  #{$submenu} {
+  .submenu {
     position: absolute;
     overflow: visible;
     z-index: 99999;
     min-width: 120px;
-    text-align: left;
-    top: 50px;
+    text-align: center;
+    top: 45px;
+    left: -10px;
     display: none;
-    #{$menuItem} {
+    background: $headerBgColor;
+    .menu-item {
       display: list-item;
+      font-size: 14px;
+      color: $textColorWhite;
+      &:hover, a:hover {
+        color: $hoverTextColor
+      }
     }
   }
 }
 
-#{$menu}-horizontal {
+.menu-horizontal {
 }
 
-#{$menuItem} {
+.menu-item {
+  position: relative;
   list-style: none;
   cursor: pointer;
   padding: 0 $spacing;
   display: inline-block;
-  > a {
+  color: $textColorWhite;
+  a {
     text-decoration: none;
-    display: inline-block;
-    color: $textColor;
-
+    color: $textColorWhite;
   }
-
   &:hover, > a:hover {
-    #{$submenu} {
+    color: $hoverTextColor;
+    .submenu {
       display: block;
     }
   }
 }
 
-#{$menuItem}-selected {
+.menuItem-selected {
 
 }
 
-#{$menuItem}-disabled {
+.menuItem-disabled {
   cursor: not-allowed;
 }
 
