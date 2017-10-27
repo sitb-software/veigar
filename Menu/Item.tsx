@@ -10,7 +10,8 @@ export interface Props {
   /**
    * 如果存在生成a标签链接
    */
-  href?: string
+  href?: string,
+  target?: string
 }
 
 export class Item extends Component<Props, any> {
@@ -22,7 +23,7 @@ export class Item extends Component<Props, any> {
 
   render() {
 
-    const {selected, disabled, href, children} = this.props;
+    const {selected, disabled, href, target, children} = this.props;
 
     const cls = {
       ['menu-item-selected']: selected,
@@ -32,6 +33,7 @@ export class Item extends Component<Props, any> {
     const aProps: any = {};
     if (href) {
       aProps.href = href;
+      aProps.target = target;
     }
 
     return (

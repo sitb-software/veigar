@@ -31,7 +31,8 @@
   "homepage": "https://github.com/sitb-software/veigar#readme",
   "dependencies": {
     "classnames": "^2.2.5",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "typescript": "^2.5.3"
   },
   "devDependencies": {
     "@types/node": "^8.0.28",
