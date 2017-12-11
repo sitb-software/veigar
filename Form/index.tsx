@@ -104,6 +104,15 @@ export default class Form extends Component<Props> {
     return value;
   }
 
+  setValue(values) {
+    Object.keys(this.fields).forEach(key => {
+      const {name} = this.fields[key].props;
+      if (values[name]) {
+        values[name] = this.fields[key].setValue(values[name]);
+      }
+    })
+  }
+
   putMissField(name, message) {
     this.errorFields.miss[name] = message;
   }
