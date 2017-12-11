@@ -62,6 +62,10 @@ export default class Input extends AbstractFormItem<Props, any> {
     return this.state.value;
   }
 
+  setValue(values):any {
+    this.setState({value: values});
+  }
+
   valid(): boolean {
     const {
       required, missMsg,
