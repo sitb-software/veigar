@@ -10,7 +10,10 @@ export class Dialog extends AbstractComponent<Props> {
 
   render() {
 
-    const {style, children, loading, contentStyle, contentClassName} = this.props;
+    const {style, children, loading, contentStyle, contentClassName, visible} = this.props;
+    if (!visible) {
+      return <div/>;
+    }
 
     return (
       <div className={this.getClassName('dialog')}>
