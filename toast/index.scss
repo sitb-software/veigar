@@ -12,37 +12,27 @@
 
 #{$classPrefix}.toast {
   display: flex;
-  padding: $spacing;
-  background-color: rgba(0, 0, 0, 0.87);
-  color: $white;
-  min-width: 270px;
-  min-height: 50px;
+  flex: 1;
+  height: 100%;
 
-  .icon {
+  .container {
+    color: $white;
     display: flex;
-    margin-right: $spacing;
-  }
-
-  &.horizontal {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  &.vertical {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: $spacing;
+    background-color: rgba(0, 0, 0, 0.7);
   }
 
   &.top {
-    top: 50px;
+
   }
 
   &.center {
-    top: 0;
-    bottom: 0;
     justify-content: center;
     align-items: center;
+
+    .container {
+      border-radius: 5px;
+    }
   }
 
 }

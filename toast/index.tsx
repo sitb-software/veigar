@@ -1,49 +1,29 @@
 import * as React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import Component from '../AbstractComponent';
 import './index.scss';
+import { ReactNode } from 'react';
 
 const id = 'veigar-toast-root';
 
-const variables = {
-  config: {
-    position: 'top',
-    /**
-     * 成功图标
-     */
-    success: null,
-    /**
-     * 失败图标
-     */
-    error: null,
-    /**
-     * 图标和内容显示模式
-     * 'vertical' | 'horizontal'
-     */
-    mode: 'horizontal',
-    duration: 2500
-  }
-};
-
-/**
- * 配置参数
- * @param {{}} conf
- */
-export function setConfig(conf = {}) {
-  variables.config = {
-    ...variables.config,
-    ...conf
-  };
+export interface ToastProps {
+  after?: ReactNode
+  before?: ReactNode
+  position?: 'top' | 'bottom' | 'center'
+  duration?: number
 }
 
-class Toast extends Component {
+class Toast extends Component<ToastProps> {
+
+  static defaultProps = {
+    position: 'top',
+    duration: 2500
+  };
 
   closeTask;
 
   componentDidMount() {
-    const {duration: userDuration} = this.props;
-    const {duration: defaultDuration} = variables.config;
-    const duration = userDuration || defaultDuration;
+    const {duration} = this.props;
     this.closeTask = setTimeout(this.handleClose, duration);
   }
 
@@ -64,36 +44,35 @@ class Toast extends Component {
   }
 
   render() {
-    const {type, children} = this.props;
-    const {position, success, error, mode} = variables.config;
-    let icon = null;
-    switch (type) {
-      case 'success':
-        icon = success;
-        break;
-      case 'error':
-        icon = error;
-        break;
-    }
+    const {before, after, children, position} = this.props;
     return (
-      <div className={this.getClassName('toast', type, position, mode)}>
-        {icon && (
-          <div className={this.getClassName('icon')}>
-            {icon}
-          </div>
-        )}
-        {typeof children === 'string' ? (
-          <div className={this.getClassName('content')}>
-            {children}
-          </div>
-        ) : children}
+      <div className={this.getClassName('toast', position)}>
+        <div className={this.getClassName('container')}>
+          {before}
+          {typeof children === 'string' ? (
+            <div className={this.getClassName('content')}>
+              {children}
+            </div>
+          ) : children}
+          {after}
+        </div>
       </div>
     );
   }
 
 }
 
-function toast({content, type, duration, onClose}) {
+export function toast(args: ({
+  content: any;
+  duration?: any;
+  onClose?: any;
+} & ToastProps) | string) {
+
+  let params: any = args;
+  if (typeof args === 'string') {
+    params = {content: args};
+  }
+  const {content, duration, onClose, ...other} = params;
   let container = document.getElementById(id);
   if (!container) {
     container = document.createElement('div');
@@ -101,8 +80,8 @@ function toast({content, type, duration, onClose}) {
     document.body.appendChild(container);
   }
   const props = {
+    ...other,
     children: content,
-    type,
     duration,
     onClose
   };
@@ -110,20 +89,3 @@ function toast({content, type, duration, onClose}) {
   render(<Toast {...props}/>, container);
 }
 
-export function success(content: React.ReactNode, duration?: number, onClose?: Function) {
-  toast({
-    type: 'success',
-    content,
-    duration,
-    onClose
-  });
-}
-
-export function error(content: React.ReactNode, duration?: number, onClose?: Function) {
-  toast({
-    type: 'error',
-    content,
-    duration,
-    onClose
-  });
-}
