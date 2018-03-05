@@ -49,7 +49,8 @@ export const create = (): Function => ComposedComponent => class FormWrapper ext
 
   render() {
     return (
-      <ComposedComponent forms={this.state.forms}/>
+      <ComposedComponent {...this.props}
+                         forms={this.state.forms}/>
     )
   }
 };
