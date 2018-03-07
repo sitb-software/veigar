@@ -16,7 +16,7 @@ export interface ToastProps {
 class Toast extends Component<ToastProps> {
 
   static defaultProps = {
-    position: 'top',
+    position: 'center',
     duration: 2500
   };
 
