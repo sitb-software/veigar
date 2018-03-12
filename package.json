@@ -24,7 +24,10 @@
     "**/*.scss",
     "**/*.sass",
     "**/*.svg",
-    "package.json"
+    "package.json",
+    "README.md",
+    "tsconfig.json",
+    "yarn.lock"
   ],
   "bugs": {
     "url": "https://github.com/sitb-software/veigar/issues"
@@ -32,14 +35,14 @@
   "homepage": "https://github.com/sitb-software/veigar#readme",
   "dependencies": {
     "classnames": "^2.2.5",
-    "prop-types": "^15.5.10",
-    "typescript": "^2.5.3"
+    "prop-types": "^15.6.1"
   },
   "devDependencies": {
-    "@types/node": "^8.0.28",
-    "@types/react": "^16.0.5",
-    "@types/react-dom": "^15.5.4",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "@types/node": "^9.4.7",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "typescript": "^2.7.2"
   }
 }
