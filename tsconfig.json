@@ -10,9 +10,13 @@
     "jsx": "react",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true
   },
   "exclude": [
