@@ -54,6 +54,16 @@ p {
   margin-bottom: $paragraph-margin-bottom;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input, button {
+  outline: none;
+  border: none;
+}
+
 .text-center {
   text-align: center;
 }
