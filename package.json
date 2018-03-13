@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rm -rf *.d.ts *.js *.js.map **/*.d.ts **/*.js **/*.js.map",
     "build": "tsc -d",
+    "watch": "tsc -d && tsc -w",
     "prepare": "npm run clean && npm run build"
   },
   "repository": {
