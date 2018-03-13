@@ -54,28 +54,6 @@ p {
   margin-bottom: $paragraph-margin-bottom;
 }
 
-/*媒体查询*/
-@media only screen {
-  @media (min-width:320px) {
-    html{ font-size:53.5%;}
-  }
-  @media (min-width:360px) {
-    html{ font-size:60%;}
-  }
-  @media (min-width:375px) {
-    html{ font-size:62.5%;}
-  }
-  @media (min-width:400px) {
-    html{ font-size:66.5%;}
-  }
-  @media (min-width:450px) {
-    html{ font-size:75%;}
-  }
-  @media (min-width:540px) {
-    html{ font-size:90%;}
-  }
-}
-
 .text-center {
   text-align: center;
 }
