@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { findDOMNode } from 'react-dom';
 import AbstractComponent from '../AbstractComponent';
 import { ItemType, Props } from './Props';
 
@@ -7,11 +8,11 @@ const itemIdPrefix = 'LIST_ITEM_';
 /**
  * @returns {number} 浏览器视口的高度
  */
-function getWindowHeight(){
+function getWindowHeight() {
   let windowHeight = 0;
-  if(document.compatMode == "CSS1Compat"){
+  if (document.compatMode == "CSS1Compat") {
     windowHeight = document.documentElement.clientHeight;
-  }else{
+  } else {
     windowHeight = document.body.clientHeight;
   }
   return windowHeight;
@@ -20,12 +21,12 @@ function getWindowHeight(){
 /**
  * 文档的高度
  */
-function getScrollHeight(){
+function getScrollHeight() {
   let bodyScrollHeight = 0, documentScrollHeight = 0;
-  if(document.body){
+  if (document.body) {
     bodyScrollHeight = document.body.scrollHeight;
   }
-  if(document.documentElement){
+  if (document.documentElement) {
     documentScrollHeight = document.documentElement.scrollHeight;
   }
   return (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
@@ -34,12 +35,12 @@ function getScrollHeight(){
 /**
  * 滚动条在Y轴上的滚动距离
  */
-function getScrollTop(){
+function getScrollTop() {
   let bodyScrollTop = 0, documentScrollTop = 0;
-  if(document.body){
+  if (document.body) {
     bodyScrollTop = document.body.scrollTop;
   }
-  if(document.documentElement){
+  if (document.documentElement) {
     documentScrollTop = document.documentElement.scrollTop;
   }
   return (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
@@ -61,11 +62,18 @@ export class List extends AbstractComponent<Props> {
     }
   }
 
-  handleScroll(event) {
-    console.log(event);
-    const {useBodyScroll,onEndReached,onEndReachedThreshold} = this.props;
-    if(useBodyScroll){
-      if(getScrollHeight() - getScrollTop() - getWindowHeight() <= onEndReachedThreshold){
+  handleScroll() {
+    const {useBodyScroll, onEndReached, onEndReachedThreshold} = this.props;
+    const dom = findDOMNode(this);
+    if (useBodyScroll) {
+      if (getScrollHeight() - getScrollTop() - getWindowHeight() <= onEndReachedThreshold) {
+        onEndReached && onEndReached();
+      }
+    } else {
+      let scrollHeight = dom.scrollHeight;
+      let scrollTop = dom.scrollTop;
+      let domHeight = dom.clientHeight;
+      if (scrollHeight - scrollTop - domHeight <= onEndReachedThreshold) {
         onEndReached && onEndReached();
       }
     }
@@ -74,20 +82,21 @@ export class List extends AbstractComponent<Props> {
   renderChildren(data: Array<ItemType>) {
     const {renderItem} = this.props;
     return data.map((item, index) => {
-
       return (
         <section id={`${itemIdPrefix}${index}`}
                  key={`${index}`}
         >
-          {renderItem(item, index)}
+          {renderItem({item, index})}
         </section>
       );
     });
   }
 
   render() {
-    const {useBodyScroll, data, renderHeader, renderFooter} = this.props;
-    const newProps: any = {};
+    const {useBodyScroll, data, renderHeader, renderFooter, style} = this.props;
+    const newProps: any = {
+      style
+    };
     if (!useBodyScroll) {
       newProps.onScroll = this.handleScroll;
     }
