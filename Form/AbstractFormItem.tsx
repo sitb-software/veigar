@@ -7,7 +7,7 @@ export default abstract class AbstractFormItem<P extends ItemProps, S> extends C
     super(props, context);
     const {name, form} = this.props;
     if (name && form) {
-      form.formFields[name] = this;
+      form.putFormField(name, this);
     }
   }
 
