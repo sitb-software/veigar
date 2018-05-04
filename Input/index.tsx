@@ -8,15 +8,6 @@ import { AbstractInput, BaseProps } from './AbstractInput';
 import './index.scss';
 
 export interface Props extends BaseProps {
-  /**
-   * 当input没有填写值时提示的错误信息
-   */
-  missMsg?: string
-
-  /**
-   * 与正则表达式不匹配错误消息
-   */
-  mismatchMsg?: string
 
   defaultValue?: string;
 
