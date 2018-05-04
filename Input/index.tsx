@@ -2,11 +2,14 @@ import * as React from 'react';
 import AbstractFormItem from '../Form/AbstractFormItem';
 import Grid from '../Grid';
 import Column from '../Column';
-import {ItemProps} from '../Form/index';
+import { ItemProps } from '../Form/index';
+import { lang } from '../locale/zh-cn';
+import field from '../Form/field';
+
 import './index.scss';
-import {lang} from '../locale/zh-cn';
 
 export interface Props extends ItemProps {
+
   label?: React.ReactNode;
   colon?: boolean,
   /**
@@ -47,6 +50,7 @@ export function create<P extends Props>(inputProps: Array<P>) {
   ));
 }
 
+@field
 export default class Input extends AbstractFormItem<Props, any> {
 
   static defaultProps = {
@@ -62,7 +66,7 @@ export default class Input extends AbstractFormItem<Props, any> {
     return this.state.value;
   }
 
-  setValue(values):any {
+  setValue(values): any {
     this.setState({value: values});
   }
 
