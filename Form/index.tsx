@@ -26,6 +26,10 @@ export const FormContext = React.createContext({});
 
 export default class Form extends Component<Props> {
 
+  static defaultProps = {
+    noValidate: false
+  };
+
   fields = {};
 
   errorFields;
@@ -81,10 +85,11 @@ export default class Form extends Component<Props> {
   }
 
   render() {
-    const {children} = this.props;
+    const {children, ...props} = this.props;
     return (
       <FormContext.Provider value={this}>
-        <form className={this.getClassName('form')}
+        <form {...props}
+              className={this.getClassName('form')}
               onSubmit={this.handleSubmit}
         >
           {children}
