@@ -1,12 +1,14 @@
 import Component from '../AbstractComponent';
+import { ItemProps } from './index';
 
-export default abstract class AbstractFormItem<P, S> extends Component<P, S> {
+export default abstract class AbstractFormItem<P extends ItemProps, S> extends Component<P, S> {
 
-  static isFormItem = true;
-
-  componentDidMount() {
+  protected constructor(props, context) {
+    super(props, context);
     const {name, form} = this.props;
-    name && form && form.putFormField(name, this);
+    if (name && form) {
+      form.formFields[name] = this;
+    }
   }
 
   /**
@@ -14,6 +16,12 @@ export default abstract class AbstractFormItem<P, S> extends Component<P, S> {
    * @returns {string}
    */
   abstract getValue(): any;
+
+  /**
+   * 设置form组件的值
+   * @param value 值
+   */
+  abstract setValue(value: any): void;
 
   /**
    * 组件校验
