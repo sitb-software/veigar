@@ -6,6 +6,18 @@ import { ItemProps } from '../Form/index';
 
 export interface BaseProps extends ItemProps {
   /**
+   * 当input没有填写值时提示的错误信息
+   */
+  missMsg?: string
+
+  /**
+   * 与正则表达式不匹配错误消息
+   */
+  mismatchMsg?: string
+
+  errorMsg?: string
+
+  /**
    * 表明字段是必须填写的
    */
   required?: boolean
@@ -45,14 +57,14 @@ export abstract class AbstractInput<P extends BaseProps, S> extends AbstractForm
     if (required && value === '') {
       console.warn(`${name} is required`);
       form && form.putMissField(name, missMsg);
-      this.setValue({miss: true});
+      this.setState({miss: true});
       return false;
     }
 
     if (pattern && !pattern.test(value)) {
       console.warn(`${name} mismatch ${pattern}`);
       form && form.putMismatchField(name, mismatchMsg);
-      this.setValue({mismatch: true});
+      this.setState({mismatch: true});
       return false;
     }
 
