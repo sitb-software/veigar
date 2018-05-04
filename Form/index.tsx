@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import Component from '../AbstractComponent';
 import './index.scss';
 
@@ -25,58 +24,11 @@ export interface ItemProps {
 
 export const FormContext = React.createContext({});
 
-/**
- * 创建表单
- */
-export const create = (): Function => ComposedComponent => class FormWrapper extends Component {
-
-  static childContextTypes = {
-    registerForm: PropTypes.func
-  };
-
-  state = {
-    forms: {}
-  };
-
-  getChildContext() {
-    return {
-      registerForm: (name, form) => {
-        const {forms} = this.state;
-        forms[name] = form;
-        this.setState(forms);
-      }
-    };
-
-  }
-
-  render() {
-    return (
-      <ComposedComponent {...this.props}
-                         forms={this.state.forms}/>
-    )
-  }
-};
-
 export default class Form extends Component<Props> {
-
-  static defaultProps = {
-    name: 'form',
-    mode: 'horizontal'
-  };
-
-  static contextTypes = {
-    registerForm: PropTypes.func
-  };
 
   fields = {};
 
   errorFields;
-
-  componentDidMount() {
-    const {name} = this.props;
-    const {registerForm} = this.context;
-    name && registerForm && registerForm(name, this);
-  }
 
   handleSubmit() {
     const {onSubmit} = this.props;
