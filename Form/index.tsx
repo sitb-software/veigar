@@ -83,11 +83,13 @@ export default class Form extends Component<Props> {
   render() {
     const {children} = this.props;
     return (
-      <form className={this.getClassName('form')}
-            onSubmit={this.handleSubmit}
-      >
-        {children}
-      </form>
+      <FormContext.Provider value={this}>
+        <form className={this.getClassName('form')}
+              onSubmit={this.handleSubmit}
+        >
+          {children}
+        </form>
+      </FormContext.Provider>
     );
   }
 
