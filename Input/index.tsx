@@ -1,33 +1,18 @@
 import * as React from 'react';
-import AbstractFormItem from '../Form/AbstractFormItem';
 import Grid from '../Grid';
 import Column from '../Column';
-import { ItemProps } from '../Form/index';
 import { lang } from '../locale/zh-cn';
 import field from '../Form/field';
+import { AbstractInput, BaseProps } from './AbstractInput';
 
 import './index.scss';
 
-export interface Props extends ItemProps {
+export interface Props extends BaseProps {
+
+  defaultValue?: string;
 
   label?: React.ReactNode;
   colon?: boolean,
-  /**
-   * 表明字段是必须填写的
-   */
-  required?: boolean,
-  /**
-   * 当input没有填写值时提示的错误信息
-   */
-  missMsg?: string,
-  /**
-   * 正则表达式用于判断输入的值是否符合预期
-   */
-  pattern?: RegExp,
-  /**
-   * 与正则表达式不匹配错误消息
-   */
-  mismatchMsg?: string,
 
   addonBefore?: React.ReactNode
   addonAfter?: React.ReactNode
@@ -51,45 +36,16 @@ export function create<P extends Props>(inputProps: Array<P>) {
 }
 
 @field
-export default class Input extends AbstractFormItem<Props, any> {
+export default class Input extends AbstractInput<Props, any> {
 
   static defaultProps = {
     mode: 'horizontal',
     colon: true
   };
 
-  state = {
-    value: ''
-  };
-
-  getValue(): any {
-    return this.state.value;
-  }
-
-  setValue(values): any {
-    this.setState({value: values});
-  }
-
-  valid(): boolean {
-    const {
-      required, missMsg,
-      pattern, mismatchMsg,
-      name, form,
-    } = this.props;
-    const {value} = this.state;
-    if (required && value === '') {
-      console.warn(`${name} is required`);
-      form && form.putMissField(name, missMsg);
-      return false;
-    }
-
-    if (pattern && !pattern.test(value)) {
-      console.warn(`${name} mismatch ${pattern}`);
-      form && form.putMismatchField(name, mismatchMsg);
-      return false;
-    }
-
-    return true;
+  constructor(props: Props, context) {
+    super(props, context);
+    this.state.value = props.defaultValue || '';
   }
 
   handleBlur(e) {
