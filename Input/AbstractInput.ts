@@ -9,18 +9,12 @@ export interface BaseProps extends ItemProps {
    * 表明字段是必须填写的
    */
   required?: boolean
-  /**
-   * 当input没有填写值时提示的错误信息
-   */
-  missMsg?: string
+
   /**
    * 正则表达式用于判断输入的值是否符合预期
    */
   pattern?: RegExp
-  /**
-   * 与正则表达式不匹配错误消息
-   */
-  mismatchMsg?: string
+
 }
 
 export abstract class AbstractInput<P extends BaseProps, S> extends AbstractFormItem<P, S> {
