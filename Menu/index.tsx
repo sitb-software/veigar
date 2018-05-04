@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Component from '../AbstractComponent';
-import {Item, Props as ItemProps} from "./Item";
+import { Item, Props as ItemProps } from "./Item";
 import './index.scss';
 
 export interface Props {
@@ -10,7 +10,7 @@ export interface Props {
   mode: 'vertical' | 'horizontal' | 'inline'
 }
 
-export {Item};
+export { Item };
 
 export default class Menu extends Component<Props, any> {
 
@@ -42,7 +42,7 @@ export default class Menu extends Component<Props, any> {
         return child;
       }
 
-      return React.cloneElement<any, ItemProps>(child, {
+      return React.cloneElement<any>(child, {
         selected: activeKey === child.key,
         children: itemChildren
       });

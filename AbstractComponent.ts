@@ -1,6 +1,6 @@
-import {Component} from 'react';
+import { Component } from 'react';
 import * as classNames from 'classnames';
-import {classPrefix} from './styles'
+import { classPrefix } from './styles'
 
 const excludeFunc = [
   'constructor',

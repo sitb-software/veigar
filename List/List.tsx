@@ -64,7 +64,7 @@ export class List extends AbstractComponent<Props> {
 
   handleScroll() {
     const {useBodyScroll, onEndReached, onEndReachedThreshold} = this.props;
-    const dom = findDOMNode(this);
+    const dom: any = findDOMNode(this);
     if (useBodyScroll) {
       if (getScrollHeight() - getScrollTop() - getWindowHeight() <= onEndReachedThreshold) {
         onEndReached && onEndReached();

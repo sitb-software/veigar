@@ -33,7 +33,7 @@ export default class Grid extends Component<Props> {
         return item;
       }
 
-      return React.cloneElement<ColumnProps, ColumnProps>(item, {
+      return React.cloneElement<ColumnProps>(item, {
         width: item.props.width || columnWidth
       });
     });

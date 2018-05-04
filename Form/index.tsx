@@ -8,7 +8,7 @@ export interface Props {
    * 表单名字
    */
   name?: string,
-  onSubmit?: Function,
+  onSubmit?: () => void,
   mode: 'vertical' | 'horizontal' | 'list',
   labelWidth?: number,
   wrapperWidth?: number
@@ -22,6 +22,8 @@ export interface ItemProps {
   form?: Form,
   children?: any
 }
+
+export const FormContext = React.createContext({});
 
 /**
  * 创建表单
@@ -126,42 +128,13 @@ export default class Form extends Component<Props> {
     this.fields[name] = field;
   }
 
-  renderChildren(children) {
-    const {mode, labelWidth, wrapperWidth} = this.props;
-    let lw = labelWidth;
-    let ww = wrapperWidth;
-    if (labelWidth && !wrapperWidth) {
-      ww = 100 - labelWidth;
-    } else if (!labelWidth && wrapperWidth) {
-      lw = 100 - wrapperWidth;
-    }
-
-    return React.Children.map(children, (child: React.ReactElement<ItemProps>) => {
-      if (!React.isValidElement(child)) {
-        return child;
-      }
-
-      if ((child.type as any).isFormItem) {
-        return React.cloneElement<any, ItemProps>(child, {
-          mode,
-          form: this,
-          labelWidth: child.props.labelWidth || lw || 20,
-          wrapperWidth: child.props.wrapperWidth || ww || 80
-        });
-      }
-      return React.cloneElement<any, any>(child, {
-        children: this.renderChildren(child.props.children)
-      });
-    });
-  }
-
   render() {
-    const {children, mode} = this.props;
+    const {children} = this.props;
     return (
-      <form className={this.getClassName('form', mode)}
+      <form className={this.getClassName('form')}
             onSubmit={this.handleSubmit}
       >
-        {this.renderChildren(children)}
+        {children}
       </form>
     );
   }
