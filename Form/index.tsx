@@ -41,6 +41,10 @@ export default class Form extends Component<Props> {
   }
 
   validate() {
+    this.errorFields = {
+      miss: {},
+      mismatch: {}
+    };
     Object.keys(this.fields).forEach(key => this.fields[key].valid());
     if (Object.keys(this.errorFields.miss).length > 0 || Object.keys(this.errorFields.mismatch).length > 0) {
       return this.errorFields;
