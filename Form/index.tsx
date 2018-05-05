@@ -69,10 +69,21 @@ export default class Form extends Component<Props> {
   }
 
   putMissField(name, message) {
+    if (!this.errorFields)
+      this.errorFields = {};
+    if (!this.errorFields.miss) {
+      this.errorFields.miss = {};
+    }
     this.errorFields.miss[name] = message;
   }
 
   putMismatchField(name, message) {
+    if (!this.errorFields) {
+      this.errorFields = {};
+    }
+    if (!this.errorFields.mismatch) {
+      this.errorFields.mismatch = {};
+    }
     this.errorFields.mismatch[name] = message;
   }
 
