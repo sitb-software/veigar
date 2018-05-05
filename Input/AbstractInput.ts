@@ -6,6 +6,10 @@ import { ItemProps } from '../Form/index';
 
 export interface BaseProps extends ItemProps {
   /**
+   * 是否校验input
+   */
+  validate?: boolean
+  /**
    * 当input没有填写值时提示的错误信息
    */
   missMsg?: string
@@ -44,6 +48,28 @@ export abstract class AbstractInput<P extends BaseProps, S> extends AbstractForm
 
   setValue(value: any) {
     return this.setState({value});
+  }
+
+  /**
+   * 处理onChange事件
+   * @param event
+   */
+  handleChange(event) {
+    const {onChange, validate} = this.props;
+    const value = event.target.value;
+    this.setState({value});
+    onChange && onChange(event);
+    // 等于undefined 表明没有传值,则为true 开始校验Input
+    (validate === undefined || validate) && this.valid();
+  }
+
+  /**
+   * input输入的值是否正确
+   * @returns {boolean}
+   */
+  isError(): boolean {
+    const {miss, mismatch, error} = this.state;
+    return miss || mismatch || error;
   }
 
   valid(): boolean {
