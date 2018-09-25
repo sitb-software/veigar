@@ -36,6 +36,7 @@
   "homepage": "https://github.com/sitb-software/veigar#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "object-path": "^0.11.4",
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
