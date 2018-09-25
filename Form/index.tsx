@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as objectPath from 'object-path';
 import Component from '../AbstractComponent';
 import './index.scss';
 
@@ -57,7 +58,7 @@ export default class Form extends Component<Props> {
     Object.keys(this.fields).forEach(key => {
       const {name} = this.fields[key].props;
       if (name) {
-        value[name] = this.fields[key].getValue();
+        objectPath.set(value, name, this.fields[key].getValue());
       }
     });
     return value;
