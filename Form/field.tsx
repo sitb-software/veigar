@@ -48,6 +48,14 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
 
   form;
 
+  componentDidMount(): void {
+    const {name} = this.props;
+    if (name && this.form && this.form.putFormField) {
+      this.form.putFormField(name, this);
+    }
+  }
+
+
   /**
    * 处理onChange事件
    * @param event
