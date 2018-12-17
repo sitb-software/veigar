@@ -52,16 +52,16 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
    * 处理onChange事件
    * @param event
    */
-  handleChange(event) {
+  handleChange = (event) => {
     const {onChange, validate} = this.props;
     const value = event.target.value;
     this.setState({value});
     onChange && onChange(event);
     // 等于undefined 表明没有传值,则为true 开始校验Input
     (validate === undefined || validate) && this.valid();
-  }
+  };
 
-  valid(): boolean {
+  valid = (): boolean => {
     const {
       required, missText,
       pattern, mismatchText,
@@ -85,7 +85,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
 
     this.setState({miss: false, mismatch: false, error: false});
     return true;
-  }
+  };
 
   render() {
     const {...props} = this.props;
