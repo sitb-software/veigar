@@ -58,17 +58,16 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
     this.setState({value});
     onChange && onChange(event);
     // 等于undefined 表明没有传值,则为true 开始校验Input
-    (validate === undefined || validate) && this.valid();
+    (validate === undefined || validate) && this.valid(value);
   };
 
-  valid = (): boolean => {
+  valid = (value): boolean => {
     const {
       required, missText,
       pattern, mismatchText,
       name
     } = this.props;
 
-    const {value} = this.state;
     if (name && required && !value) {
       console.warn(`${name} is required`);
       this.form && this.form.putMissField && this.form.putMissField(name, missText);
