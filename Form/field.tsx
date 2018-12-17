@@ -2,10 +2,38 @@ import * as React from 'react';
 
 import { FormContext } from './index';
 
+export interface FieldProps {
+  /**
+   * 是否校验input
+   */
+  validate?: boolean
+  /**
+   * 当input没有填写值时提示的错误信息
+   */
+  missText?: string
+
+  /**
+   * 与正则表达式不匹配错误消息
+   */
+  mismatchText?: string
+
+  errorText?: string
+
+  /**
+   * 表明字段是必须填写的
+   */
+  required?: boolean
+
+  /**
+   * 正则表达式用于判断输入的值是否符合预期
+   */
+  pattern?: RegExp
+}
+
 /**
  * @author 田尘殇Sean(sean.snow@live.com) create at 2018/5/2
  */
-export default (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
+export const field = (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
 
   form;
 
@@ -64,4 +92,8 @@ export default (ComposedComponent): any => class FieldWrapper extends React.Comp
       </FormContext.Consumer>
     );
   }
-}
+};
+
+export default field;
+
+
