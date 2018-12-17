@@ -71,14 +71,14 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
     const {value} = this.state;
     if (name && required && !value) {
       console.warn(`${name} is required`);
-      this.form && this.form.putMissField(name, missText);
+      this.form && this.form.putMissField && this.form.putMissField(name, missText);
       this.setState({miss: true});
       return false;
     }
 
     if (pattern && !pattern.test(value)) {
       console.warn(`${name} mismatch ${pattern}`);
-      this.form && this.form.putMismatchField(name, mismatchText);
+      this.form && this.form.putMissField && this.form.putMismatchField(name, mismatchText);
       this.setState({mismatch: true});
       return false;
     }
