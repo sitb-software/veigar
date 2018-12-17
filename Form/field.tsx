@@ -35,6 +35,13 @@ export interface FieldProps {
  */
 export const field = (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
 
+  state = {
+    value: '',
+    miss: false,
+    mismatch: false,
+    error: false
+  };
+
   form;
 
   /**
