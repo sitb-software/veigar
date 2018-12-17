@@ -7,16 +7,20 @@ export interface FieldProps {
    * 是否校验input
    */
   validate?: boolean
+
+  miss?: boolean
   /**
    * 当input没有填写值时提示的错误信息
    */
   missText?: string
 
+  mismatch?: boolean
   /**
    * 与正则表达式不匹配错误消息
    */
   mismatchText?: string
 
+  error?: boolean
   errorText?: string
 
   /**
@@ -91,6 +95,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
           this.form = form;
           return (
             <ComposedComponent {...props}
+                               {...this.state}
                                form={form}
                                onChange={this.handleChange}
             />
