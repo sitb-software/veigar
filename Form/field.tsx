@@ -39,6 +39,10 @@ export interface FieldProps {
  */
 export const field = (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
 
+  static defaultProps = {
+    validate: true
+  };
+
   state = {
     value: '',
     miss: false,
@@ -55,27 +59,35 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
     }
   }
 
+  getValue() {
+    return this.state.value;
+  }
+
+  setValue(value) {
+    this.setState({value}, this.valid);
+  }
 
   /**
    * 处理onChange事件
    * @param event
    */
   handleChange = (event) => {
-    const {onChange, validate} = this.props;
+    const {onChange} = this.props;
     const value = event.target.value;
-    this.setState({value}, () => {
-      // 等于undefined 表明没有传值,则为true 开始校验Input
-      (validate === undefined || validate) && this.valid();
-    });
+    this.setState({value}, this.valid);
     onChange && onChange(event);
   };
 
   valid = (): boolean => {
     const {
+      validate,
       required, missText,
       pattern, mismatchText,
       name
     } = this.props;
+    if (!validate) {
+      return true;
+    }
 
     const {value} = this.state;
     if (name && required && !value) {
@@ -97,7 +109,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
   };
 
   render() {
-    const {...props} = this.props;
+    const {validate, ...props} = this.props;
     return (
       <FormContext.Consumer>
         {form => {
