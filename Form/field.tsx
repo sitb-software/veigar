@@ -20,9 +20,6 @@ export interface FieldProps {
    */
   mismatchText?: string
 
-  error?: boolean
-  errorText?: string
-
   /**
    * 表明字段是必须填写的
    */
@@ -46,8 +43,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
   state = {
     value: '',
     miss: false,
-    mismatch: false,
-    error: false
+    mismatch: false
   };
 
   form;
@@ -104,7 +100,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
       return false;
     }
 
-    this.setState({miss: false, mismatch: false, error: false});
+    this.setState({miss: false, mismatch: false});
     return true;
   };
 
