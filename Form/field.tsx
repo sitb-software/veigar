@@ -31,10 +31,15 @@ export interface FieldProps {
   pattern?: RegExp
 }
 
+export interface Args {
+  getValue?: () => any,
+  setValue?: (value: any) => void
+}
+
 /**
  * @author 田尘殇Sean(sean.snow@live.com) create at 2018/5/2
  */
-export const field = (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
+export const field = ({getValue, setValue}: Args = {}) => (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
 
   static defaultProps = {
     validate: true
@@ -56,11 +61,15 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
   }
 
   getValue() {
+    if (getValue) {
+      return getValue();
+    }
     return this.state.value;
   }
 
   setValue(value) {
     this.setState({value}, this.valid);
+    setValue && setValue(value);
   }
 
   /**
