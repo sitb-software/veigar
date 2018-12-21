@@ -35,7 +35,7 @@ export function create<P extends Props>(inputProps: Array<P>) {
   ));
 }
 
-@field()
+@field
 export default class Input extends AbstractInput<Props, any> {
 
   static defaultProps = {

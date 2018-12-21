@@ -31,27 +31,23 @@ export interface FieldProps {
   pattern?: RegExp
 }
 
-export interface Args {
-  getValue?: () => any,
-  setValue?: (value: any) => void
-}
-
 /**
  * @author 田尘殇Sean(sean.snow@live.com) create at 2018/5/2
  */
-export const field = ({getValue, setValue}: Args = {}) => (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
+export const field = (ComposedComponent): any => class FieldWrapper extends React.Component<any, any> {
 
   static defaultProps = {
     validate: true
   };
 
   state = {
-    value: '',
+    fieldValue: '',
     miss: false,
     mismatch: false
   };
 
   form;
+  field;
 
   componentDidMount(): void {
     const {name} = this.props;
@@ -61,15 +57,17 @@ export const field = ({getValue, setValue}: Args = {}) => (ComposedComponent): a
   }
 
   getValue() {
-    if (getValue) {
-      return getValue();
+    if (this.field && this.field.getValue) {
+      return this.field.getValue();
     }
-    return this.state.value;
+    return this.state.fieldValue;
   }
 
-  setValue(value) {
-    this.setState({value}, this.valid);
-    setValue && setValue(value);
+  setValue(fieldValue) {
+    if (this.field && this.field.setValue) {
+      this.field.setValue(fieldValue);
+    }
+    this.setState({fieldValue}, this.valid);
   }
 
   /**
@@ -94,15 +92,15 @@ export const field = ({getValue, setValue}: Args = {}) => (ComposedComponent): a
       return true;
     }
 
-    const {value} = this.state;
-    if (name && required && !value) {
+    const {fieldValue} = this.state;
+    if (name && required && !fieldValue) {
       console.warn(`${name} is required`);
       this.form && this.form.putMissField && this.form.putMissField(name, missText);
       this.setState({miss: true});
       return false;
     }
 
-    if (pattern && !pattern.test(value)) {
+    if (pattern && !pattern.test(fieldValue)) {
       console.warn(`${name} mismatch ${pattern}`);
       this.form && this.form.putMissField && this.form.putMismatchField(name, mismatchText);
       this.setState({mismatch: true});
@@ -119,13 +117,14 @@ export const field = ({getValue, setValue}: Args = {}) => (ComposedComponent): a
       <FormContext.Consumer>
         {form => {
           this.form = form;
-          return (
+          this.field = (
             <ComposedComponent {...props}
                                {...this.state}
                                form={form}
                                onChange={this.handleChange}
             />
           );
+          return this.field;
         }}
       </FormContext.Consumer>
     );
