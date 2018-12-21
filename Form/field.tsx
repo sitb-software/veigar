@@ -117,14 +117,14 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
       <FormContext.Consumer>
         {form => {
           this.form = form;
-          this.field = (
+          return (
             <ComposedComponent {...props}
                                {...this.state}
                                form={form}
                                onChange={this.handleChange}
+                               ref={field => this.field = field}
             />
           );
-          return this.field;
         }}
       </FormContext.Consumer>
     );
