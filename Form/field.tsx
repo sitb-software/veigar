@@ -76,8 +76,8 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
    */
   handleChange = (event) => {
     const {onChange} = this.props;
-    const value = event.target.value;
-    this.setState({value}, this.valid);
+    const fieldValue = event.target.value;
+    this.setState({fieldValue}, this.valid);
     onChange && onChange(event);
   };
 
