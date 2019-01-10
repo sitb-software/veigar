@@ -38,7 +38,7 @@ export default class Form extends Component<Props> {
   handleSubmit() {
     const {onSubmit} = this.props;
     this.validate();
-    onSubmit && onSubmit();
+    onSubmit && onSubmit(this);
   }
 
   validate() {
