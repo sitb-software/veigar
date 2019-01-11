@@ -112,14 +112,20 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
   };
 
   render() {
-    const {validate, ...props} = this.props;
+    const {validate, defaultValue, ...props} = this.props;
     return (
       <FormContext.Consumer>
-        {form => {
+        {({initialValue = {}, form}: any = {}) => {
           this.form = form;
+          let newDefaultValue = defaultValue;
+          if (!newDefaultValue && props.name) {
+            newDefaultValue = initialValue[props.name];
+          }
+          this.state.fieldValue = newDefaultValue;
           return (
             <ComposedComponent {...props}
                                {...this.state}
+                               defaultValue={newDefaultValue}
                                form={form}
                                onChange={this.handleChange}
                                ref={field => this.field = field}

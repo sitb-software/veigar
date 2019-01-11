@@ -97,9 +97,9 @@ export default class Form extends Component<Props> {
   }
 
   render() {
-    const {children, ...props} = this.props;
+    const {children, initialValue, ...props} = this.props;
     return (
-      <FormContext.Provider value={this}>
+      <FormContext.Provider value={{initialValue, form: this}}>
         <form {...props}
               className={this.getClassName('form')}
               onSubmit={this.handleSubmit}
