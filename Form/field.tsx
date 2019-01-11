@@ -47,12 +47,19 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
   };
 
   form;
+  /**
+   * 表单传递过来的初始化值
+   */
+  initialValue;
   field;
 
   componentDidMount(): void {
     const {name} = this.props;
     if (name && this.form && this.form.putFormField) {
       this.form.putFormField(name, this);
+    }
+    if (name && this.initialValue && this.initialValue[name]) {
+      this.setState({fieldValue: this.initialValue[name]});
     }
   }
 
@@ -117,11 +124,11 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
       <FormContext.Consumer>
         {({initialValue = {}, form}: any = {}) => {
           this.form = form;
+          this.initialValue = initialValue;
           let newDefaultValue = defaultValue;
           if (!newDefaultValue && props.name) {
             newDefaultValue = initialValue[props.name];
           }
-          this.state.fieldValue = newDefaultValue;
           return (
             <ComposedComponent {...props}
                                {...this.state}
