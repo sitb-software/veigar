@@ -126,7 +126,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
           this.form = form;
           this.initialValue = initialValue;
           let newDefaultValue = defaultValue;
-          if (!newDefaultValue && props.name) {
+          if (!newDefaultValue && props.name && initialValue) {
             newDefaultValue = initialValue[props.name];
           }
           return (
