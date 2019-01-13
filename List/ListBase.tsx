@@ -78,6 +78,8 @@ export class ListBase extends React.Component<Props> {
 
   render() {
     const {
+      onEndReached,
+      onEndReachedThreshold,
       useBodyScroll,
       data,
       renderHeader,
