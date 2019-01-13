@@ -10,7 +10,7 @@ export interface Props {
   useBodyScroll?: boolean
   onEndReached?: () => void
   onEndReachedThreshold?: number
-  renderItem: (info: { item: ItemType, index: number }) => ReactElement<any>,
+  renderItem: (value: any, index: number, array: any[]) => ReactElement<any>,
   renderHeader?: () => ReactElement<any>
   renderFooter?: () => ReactElement<any>
   component?: ReactType<any>

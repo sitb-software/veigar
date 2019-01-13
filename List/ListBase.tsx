@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
-import { ItemType, Props } from './BaseProps';
+import { Props } from './BaseProps';
 
 /**
  * @returns {number} 浏览器视口的高度
@@ -76,17 +76,13 @@ export class ListBase extends React.Component<Props> {
     }
   }
 
-  renderChildren(data: Array<ItemType>) {
-    const {renderItem} = this.props;
-    return data.map((item, index) => renderItem({item, index}));
-  }
-
   render() {
     const {
       useBodyScroll,
       data,
       renderHeader,
       renderFooter,
+      renderItem,
       component: Component = 'div',
       ...props
     } = this.props;
@@ -103,7 +99,7 @@ export class ListBase extends React.Component<Props> {
     return (
       <Component {...newProps}>
         {renderHeader && renderHeader()}
-        {this.renderChildren(data)}
+        {data.map(renderItem)}
         {renderFooter && renderFooter()}
       </Component>
     );
