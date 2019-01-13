@@ -14,4 +14,6 @@ export interface Props {
   renderHeader?: () => ReactElement<any>
   renderFooter?: () => ReactElement<any>
   component?: ReactType<any>
+
+  [key: string]: any
 }
