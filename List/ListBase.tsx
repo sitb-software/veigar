@@ -78,7 +78,7 @@ export class ListBase extends React.Component<Props> {
 
   renderChildren(data: Array<ItemType>) {
     const {renderItem} = this.props;
-    return data.map(renderItem);
+    return data.map((item, index) => renderItem({item, index}));
   }
 
   render() {
