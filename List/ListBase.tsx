@@ -43,6 +43,12 @@ function getScrollTop() {
   return (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
 }
 
+function defaultRenderEmpty() {
+  return (
+    <div>{'什么也没有'}</div>
+  );
+}
+
 /**
  * @author Sean(sean.snow@live.com) createAt 18-3-12
  */
@@ -84,6 +90,7 @@ export class ListBase extends React.Component<Props> {
       data,
       renderHeader,
       renderFooter,
+      renderEmpty = defaultRenderEmpty,
       renderItem,
       component: Component = 'div',
       ...props
@@ -101,7 +108,7 @@ export class ListBase extends React.Component<Props> {
     return (
       <Component {...newProps}>
         {renderHeader && renderHeader()}
-        {data.map(renderItem)}
+        {(data && data.length > 0) ? data.map(renderItem) : renderEmpty()}
         {renderFooter && renderFooter()}
       </Component>
     );

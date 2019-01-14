@@ -13,6 +13,7 @@ export interface Props {
   renderItem: (value: any, index: number, array: any[]) => ReactElement<any>,
   renderHeader?: () => ReactElement<any>
   renderFooter?: () => ReactElement<any>
+  renderEmpty?: () => ReactElement<any>
   component?: ReactType<any>
 
   [key: string]: any
