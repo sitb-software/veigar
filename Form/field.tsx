@@ -77,6 +77,12 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
     this.setState({fieldValue}, this.valid);
   }
 
+  resetValue() {
+    if (this.field && this.field.resetValue) {
+      this.field.resetValue();
+    }
+    this.setState({fieldValue: ''});
+  }
   /**
    * 处理onChange事件
    * @param event
@@ -120,6 +126,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
 
   render() {
     const {validate, defaultValue, ...props} = this.props;
+    const {fieldValue} = this.state;
     return (
       <FormContext.Consumer>
         {({initialValue = {}, form}: any = {}) => {
@@ -134,6 +141,7 @@ export const field = (ComposedComponent): any => class FieldWrapper extends Reac
                                {...this.state}
                                defaultValue={newDefaultValue}
                                form={form}
+                               value={fieldValue}
                                onChange={this.handleChange}
                                ref={field => this.field = field}
             />
