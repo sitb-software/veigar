@@ -73,6 +73,12 @@ export default class Form extends Component<Props> {
     })
   }
 
+  resetValue() {
+    Object.keys(this.fields).forEach(key => {
+      this.fields[key].resetValue();
+    });
+  }
+
   putMissField(name, message) {
     if (!this.errorFields)
       this.errorFields = {};
